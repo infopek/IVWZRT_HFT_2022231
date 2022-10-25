@@ -13,24 +13,23 @@ namespace IVWZRT_HFT_2022231.Models
             string[] split = line.Split('@');
 
             PlayerId = int.Parse(split[0]);
-            LegendId = int.Parse(split[1]);
 
-            Age = int.Parse(split[2]);
+            Age = int.Parse(split[1]);
 
-            UserName = split[3];
+            UserName = split[2];
 
-            NumGames = int.Parse(split[4]);
-            Kills = int.Parse(split[5]);
-            Deaths = int.Parse(split[6]);
+            NumGames = int.Parse(split[3]);
+            TotalKills = int.Parse(split[4]);
+            TotalDeaths = int.Parse(split[5]);
 
-            Rank = split[7];
+            Rank = split[6];
+
+            LegendId = int.Parse(split[7]);
         }
 
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int PlayerId { get; set; }
-
-        public int LegendId { get; set; }
 
         [Range(16, 90)]
         public int Age { get; set; }
@@ -40,13 +39,15 @@ namespace IVWZRT_HFT_2022231.Models
         public string UserName { get; set; }
 
         public int NumGames { get; set; }
-        public int Kills { get; set; }
-        public int Deaths { get; set; }
+        public int TotalKills { get; set; }
+        public int TotalDeaths { get; set; }
 
         public string Rank { get; set; }
 
+        public int LegendId { get; set; }
+
         public virtual Legend Main { get; set; }
         public virtual ICollection<Match> Matches { get; set; }
-        public virtual ICollection<Champion> ChampionTitles { get; set; }
+        public virtual ICollection<EndGameStat> Stats { get; set; }
     }
 }
