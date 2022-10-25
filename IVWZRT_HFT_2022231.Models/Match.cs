@@ -14,19 +14,15 @@ namespace IVWZRT_HFT_2022231.Models
 
             MatchId = int.Parse(split[0]);
 
-            ChampionId = int.Parse(split[1]);
+            Length = int.Parse(split[1]);
 
-            Length = int.Parse(split[2]);
-
-            GameMode = split[3];
-            Map = split[4];
+            GameMode = split[2];
+            Map = split[3];
         }
 
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int MatchId { get; set; }
-
-        public int ChampionId { get; set; }
 
         // In minutes
         [Range(1, 30)]
@@ -36,6 +32,6 @@ namespace IVWZRT_HFT_2022231.Models
         public string Map { get; set; }
 
         public virtual ICollection<Player> Players { get; set; }
-        public virtual Champion Champion { get; set; }
+        public virtual ICollection<EndGameStat> Stats { get; set; }
     }
 }
