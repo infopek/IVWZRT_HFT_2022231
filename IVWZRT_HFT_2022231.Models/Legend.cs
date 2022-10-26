@@ -18,8 +18,11 @@ namespace IVWZRT_HFT_2022231.Models
             Role = split[2];
 
             Skin = split[3];
-            Tactical = split[4];
-            Ultimate = split[5];
+            NumRevives = int.Parse(split[4]);
+
+            Passive = split[5];
+            Tactical = split[6];
+            Ultimate = split[7];
         }
 
         [Key]
@@ -30,6 +33,8 @@ namespace IVWZRT_HFT_2022231.Models
         public string Role { get; set; }
 
         public string Skin { get; set; }
+        public int NumRevives { get; set; }
+
         public string Passive { get; set; }
         public string Tactical { get; set; }
         public string Ultimate { get; set; }
