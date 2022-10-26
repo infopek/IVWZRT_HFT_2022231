@@ -43,7 +43,6 @@ namespace IVWZRT_HFT_2022231.Repository
                 .HasForeignKey(p => p.LegendId)
                 .OnDelete(DeleteBehavior.Cascade);
         }
-
         protected override void OnConfiguring(DbContextOptionsBuilder builder)
         {
             if (!builder.IsConfigured)
