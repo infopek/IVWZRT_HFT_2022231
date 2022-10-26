@@ -17,7 +17,7 @@ namespace IVWZRT_HFT_2022231.Models
             Name = split[1];
             Role = split[2];
 
-            Passive = split[3];
+            Skin = split[3];
             Tactical = split[4];
             Ultimate = split[5];
         }
@@ -29,6 +29,7 @@ namespace IVWZRT_HFT_2022231.Models
         public string Name { get; set; }
         public string Role { get; set; }
 
+        public string Skin { get; set; }
         public string Passive { get; set; }
         public string Tactical { get; set; }
         public string Ultimate { get; set; }
