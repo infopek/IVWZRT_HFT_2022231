@@ -1,5 +1,0 @@
-- get players' kd in each rank
-- players' best match where they were champion
-- most used legend in a specific rank
-- # of times top 3
-- average damage per game
