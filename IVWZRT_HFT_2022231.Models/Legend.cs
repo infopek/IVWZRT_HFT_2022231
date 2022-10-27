@@ -53,12 +53,9 @@ namespace IVWZRT_HFT_2022231.Models
 
             Info = _legends[split[1]];
 
-            Skin = split[3];
-            NumRevives = int.Parse(split[4]);
-
-            Passive = split[5];
-            Tactical = split[6];
-            Ultimate = split[7];
+            Skin = split[2];
+            Revives = int.Parse(split[3]);
+            Headshots = int.Parse(split[4]);
         }
 
         [Key]
@@ -68,11 +65,8 @@ namespace IVWZRT_HFT_2022231.Models
         public LegendInfo Info { get; private set; }
 
         public string Skin { get; set; }
-        public int NumRevives { get; set; }
-
-        public string Passive { get; set; }
-        public string Tactical { get; set; }
-        public string Ultimate { get; set; }
+        public int Revives { get; set; }
+        public int Headshots { get; set; }
 
         public virtual ICollection<Player> Players { get; set; }
 
