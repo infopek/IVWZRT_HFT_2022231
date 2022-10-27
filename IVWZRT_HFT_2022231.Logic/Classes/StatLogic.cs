@@ -25,6 +25,8 @@ namespace IVWZRT_HFT_2022231.Logic
         }
         public void Create(EndGameStat item)
         {
+            if (item.Damage < 0 || item.KillPoints < 0)
+                throw new ArgumentException("Damage and kill points must be non-negative");
             _repo.Create(item);
         }
         public void Update(EndGameStat item)
