@@ -14,9 +14,9 @@ namespace IVWZRT_HFT_2022231.Models
 
             PlayerId = int.Parse(split[0]);
 
-            Age = int.Parse(split[1]);
+            UserName = split[1];
 
-            UserName = split[2];
+            Age = int.Parse(split[2]);
 
             NumGames = int.Parse(split[3]);
             TotalKills = int.Parse(split[4]);
@@ -31,12 +31,12 @@ namespace IVWZRT_HFT_2022231.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int PlayerId { get; set; }
 
-        [Range(16, 90)]
-        public int Age { get; set; }
-
         [Required]
         [StringLength(32)]
         public string UserName { get; set; }
+
+        [Range(16, 90)]
+        public int Age { get; set; }
 
         public int NumGames { get; set; }
         public int TotalKills { get; set; }
