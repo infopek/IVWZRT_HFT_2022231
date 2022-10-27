@@ -26,6 +26,17 @@ namespace IVWZRT_HFT_2022231.Logic
         }
         public void Create(Match item)
         {
+            string gameMode = item.GameMode.ToLower();
+            string map = item.Map.ToLower();
+
+            // Check game mode and map validity
+            if (!_validModes.Contains(gameMode))
+                throw new ArgumentException("Invalid game mode provided");
+            else if (!(gameMode == "arenas" || gameMode == "ranked arenas") && !_validBRMaps.Contains(map))
+                throw new ArgumentException("Invalid map provided for battle royale");
+            else if ((gameMode == "arenas" || gameMode == "ranked arenas") && !_validArenasMaps.Contains(map) )
+                throw new ArgumentException("Invalid map provided for arenas");
+
             _repo.Create(item);
         }
         public void Update(Match item)
@@ -46,14 +57,20 @@ namespace IVWZRT_HFT_2022231.Logic
         {
             return 0.0f;
         }
-        public IEnumerable<Match> GetPlayersBestMatch()
+        public string MapWhereRampartMostUsed()
         {
-            return null;
+            return "";
         }
         public Match LongestMatchInDiamond()
         {
             return null;
         }
+
+        private static readonly string[] _validModes = { "trios", "duos", "ranked leagues", "arenas", "ranked arenas" };
+
+        private static readonly string[] _validBRMaps = { "kings canyon", "world's edge", "olympus", "storm point" };
+        private static readonly string[] _validArenasMaps = { "drop off", "habitat 4", "encore", "overflow", "party crasher",
+            "phase runner", "rotating map" };
 
         private IRepository<Match> _repo;
     }
