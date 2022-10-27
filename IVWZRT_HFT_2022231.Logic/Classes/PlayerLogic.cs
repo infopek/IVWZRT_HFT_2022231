@@ -26,6 +26,15 @@ namespace IVWZRT_HFT_2022231.Logic
         }
         public void Create(Player item)
         {
+            string rank = item.Rank.ToLower();
+
+            if (item.UserName == null || item.UserName == "")
+                throw new ArgumentException("A player must have a username");
+            if (!_validRanks.Contains(rank))
+                throw new ArgumentException("Provided rank does not exist");
+            if (item.NumGames < 0 || item.TotalDeaths < 0 || item.TotalKills < 0)
+                throw new ArgumentException("Number of games, total deaths and total kills must be non-negative");
+
             _repo.Create(item);
         }
         public void Update(Player item)
@@ -50,6 +59,9 @@ namespace IVWZRT_HFT_2022231.Logic
         {
             return 0;
         }
+
+        private static readonly string[] _validRanks = { "unranked", "rookie", "bronze", "silver", "gold",
+            "platinum", "diamond", "master", "predator" };
 
         private IRepository<Player> _repo;
     }
