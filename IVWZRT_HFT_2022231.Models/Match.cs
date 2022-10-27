@@ -25,6 +25,7 @@ namespace IVWZRT_HFT_2022231.Models
         public int MatchId { get; set; }
 
         // In minutes
+        [Required]
         [Range(1, 30)]
         public float Length { get; set; }
 
