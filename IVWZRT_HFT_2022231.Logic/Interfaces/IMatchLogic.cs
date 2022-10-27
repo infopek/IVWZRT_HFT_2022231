@@ -1,4 +1,3 @@
-﻿using System.Collections.Generic;
 using System.Linq;
 
 using IVWZRT_HFT_2022231.Models;
@@ -16,7 +15,7 @@ namespace IVWZRT_HFT_2022231.Logic
 
         // NON-CRUD
         float AvgDamagePerGame();
-        IEnumerable<Match> GetPlayersBestMatch();
+        string MapWhereRampartMostUsed();
         Match LongestMatchInDiamond();
     }
 }
