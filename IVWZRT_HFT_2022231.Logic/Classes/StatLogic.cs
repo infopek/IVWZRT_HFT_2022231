@@ -42,11 +42,6 @@ namespace IVWZRT_HFT_2022231.Logic
             _repo.Delete(id);
         }
 
-        // NON-CRUD
-        public int MostDamageAsPathfinder()
-        {
-            return 0;
-        }
 
         private IRepository<EndGameStat> _repo;
     }

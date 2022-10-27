@@ -12,8 +12,5 @@ namespace IVWZRT_HFT_2022231.Logic
         void Create(EndGameStat item);
         void Update(EndGameStat item);
         void Delete(int id);
-
-        // NON-CRUD
-        int MostDamageAsPathfinder();
     }
 }
