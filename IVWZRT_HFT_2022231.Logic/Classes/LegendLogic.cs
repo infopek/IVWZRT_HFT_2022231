@@ -26,6 +26,8 @@ namespace IVWZRT_HFT_2022231.Logic
         }
         public void Create(Legend item)
         {
+            if (item.Revives < 0 || item.Headshots < 0)
+                throw new ArgumentException("Number of revives and headshots must be non-negative");
             _repo.Create(item);
         }
         public void Update(Legend item)
