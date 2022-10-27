@@ -30,7 +30,9 @@ namespace IVWZRT_HFT_2022231.Models
         public float KillPoints { get; set; }
         public int Damage { get; set; }
 
+        [ForeignKey("Player")]
         public int PlayerId { get; set; }
+        [ForeignKey("Match")]
         public int MatchId { get; set; }
 
         public virtual Player Player { get; set; }

@@ -44,6 +44,7 @@ namespace IVWZRT_HFT_2022231.Models
 
         public string Rank { get; set; }
 
+        [ForeignKey("Legend")]
         public int LegendId { get; set; }
 
         public virtual Legend Main { get; set; }
