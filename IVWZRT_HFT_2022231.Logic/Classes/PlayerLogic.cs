@@ -71,7 +71,11 @@ namespace IVWZRT_HFT_2022231.Logic
         }
 
         // NON-CRUD
-        public IEnumerable<Player> PlayersWithGreaterKD(string rank)
+        
+        /// <summary>
+        /// Returns all the players whose kill/death ratio is (strictly) greater than 2.0 in a given <paramref name="rank"/>
+        /// </summary>
+        public IEnumerable<PlayerRankInfo> PlayersWithGreaterKD(string rank)
         {
             return null;
         }
