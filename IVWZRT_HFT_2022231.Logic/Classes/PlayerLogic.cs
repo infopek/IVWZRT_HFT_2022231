@@ -77,7 +77,15 @@ namespace IVWZRT_HFT_2022231.Logic
         /// </summary>
         public IEnumerable<PlayerRankInfo> PlayersWithGreaterKD(string rank)
         {
-            return null;
+            return from p in _repo.ReadAll()
+                   where p.Rank == rank
+                   && ((float)p.TotalKills / p.TotalDeaths) > 2.0f
+                   select new PlayerRankInfo
+                   {
+                       UserName = p.UserName,
+                       Rank = rank,
+                       KDRatio = (float)p.TotalKills / p.TotalDeaths
+                   };
         }
         public int NumTimesTopThree(string username)
         {
