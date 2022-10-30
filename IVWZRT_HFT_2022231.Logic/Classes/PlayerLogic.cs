@@ -87,9 +87,14 @@ namespace IVWZRT_HFT_2022231.Logic
                        KDRatio = (float)p.TotalKills / p.TotalDeaths
                    };
         }
+        /// <summary>
+        /// Returns the number of times a player with username <paramref name="username"/> has finished in the top 3.
+        /// </summary>
         public int NumTimesTopThree(string username)
         {
-            return 0;
+            return (from p in _repo.ReadAll()
+                   where p.UserName == username
+                   select p.Stats.Count(s => s.Placement <= 3)).First();
         }
 
         private static readonly string[] _validRanks = { "unranked", "rookie", "bronze", "silver", "gold",
