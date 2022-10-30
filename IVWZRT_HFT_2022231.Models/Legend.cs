@@ -24,6 +24,7 @@ namespace IVWZRT_HFT_2022231.Models
 
         [Required]
         [StringLength(20)]
+        public string Name { get; set; }
         public string Skin { get; set; }
 
         public virtual ICollection<Player> Players { get; set; }
