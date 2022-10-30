@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using System.Collections.Generic;
 
 using IVWZRT_HFT_2022231.Models;
 
@@ -14,9 +15,9 @@ namespace IVWZRT_HFT_2022231.Logic
         void Delete(int id);
 
         // NON-CRUD
-        float AvgDamagePerGame();
-        string MapWhereRampartMostUsed();
-        Match LongestMatchInDiamond();
+        float AvgLengthOfGame(string gameMode);
+        IEnumerable<string> MapsWithMostRamparts();
+        IEnumerable<Match> LongestMatchesInDiamond();
     }
 }
 
