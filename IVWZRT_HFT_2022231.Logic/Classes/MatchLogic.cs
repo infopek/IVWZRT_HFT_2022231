@@ -53,9 +53,15 @@ namespace IVWZRT_HFT_2022231.Logic
         }
 
         // NON-CRUD
-        public float AvgDamagePerGame()
+        /// <summary>
+        /// Returns the average damage of players in <paramref name="gamemode"/>
+        /// </summary>
+        public float AvgLengthOfGame(string gameMode)
         {
-            return 0.0f;
+            return (from m in _repo.ReadAll()
+                   where m.GameMode == gameMode
+                   group m by m.GameMode into gr
+                   select gr.Average(m => m.Length)).First();
         }
         public string MapWhereRampartMostUsed()
         {
