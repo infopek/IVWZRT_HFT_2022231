@@ -63,9 +63,16 @@ namespace IVWZRT_HFT_2022231.Logic
                    group m by m.GameMode into gr
                    select gr.Average(m => m.Length)).First();
         }
-        public string MapWhereRampartMostUsed()
+        /// <summary>
+        /// Returns the map(s) of match(es) where the most ramparts were played at the time.
+        /// </summary>
+        public IEnumerable<string> MapsWithMostRamparts()
         {
-            return "";
+            int maxUse = _repo.ReadAll().Max(m => m.Players.Count(p => p.Legend.Name.ToLower() == "rampart"));
+
+            return from m in _repo.ReadAll()
+                   where m.Players.Count(p => p.Legend.Name.ToLower() == "rampart") == maxUse
+                   select m.Map;
         }
         public Match LongestMatchInDiamond()
         {
