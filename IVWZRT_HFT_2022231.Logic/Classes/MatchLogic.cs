@@ -74,9 +74,21 @@ namespace IVWZRT_HFT_2022231.Logic
                    where m.Players.Count(p => p.Legend.Name.ToLower() == "rampart") == maxUse
                    select m.Map;
         }
-        public Match LongestMatchInDiamond()
+        /// <summary>
+        /// Returns the longest match(es) played in diamond ranked leagues.
+        /// </summary>
+        public IEnumerable<Match> LongestMatchesInDiamond()
         {
-            return null;
+            // Note: I'll assume that a diamond player can only be in a diamond ranked lobby (realistically, this is NOT the case)
+            float longest = _repo.ReadAll()
+                .Where(m => m.GameMode.ToLower() == "ranked leagues" && m.Players.Any(p => p.Rank.ToLower() == "diamond"))
+                .Max(m => m.Length);
+
+            return from m in _repo.ReadAll()
+                   where m.GameMode.ToLower() == "ranked leagues"
+                   && m.Players.Any(p => p.Rank.ToLower() == "diamond")
+                   && m.Length == longest
+                   select m;
         }
 
         private static readonly string[] _validModes = { "trios", "duos", "ranked leagues", "arenas", "ranked arenas" };
