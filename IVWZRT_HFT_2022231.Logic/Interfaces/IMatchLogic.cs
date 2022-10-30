@@ -14,7 +14,7 @@ namespace IVWZRT_HFT_2022231.Logic
         void Update(Match item);
         void Delete(int id);
 
-        // NON-CRUD     
+        // NON-CRUD
         float AvgLengthOfGame(string gameMode);
         IEnumerable<string> MapsWithMostRamparts();
         IEnumerable<Match> LongestMatchesInDiamond();

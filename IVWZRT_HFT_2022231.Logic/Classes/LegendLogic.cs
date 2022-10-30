@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Collections.Generic;
 
 using IVWZRT_HFT_2022231.Repository;
 using IVWZRT_HFT_2022231.Models;
@@ -11,26 +12,6 @@ namespace IVWZRT_HFT_2022231.Logic
         public LegendLogic(IRepository<Legend> repo)
         {
             _repo = repo;
-        }
-
-        // Helper class
-        public class HeadshotInfo
-        {
-            public override bool Equals(object obj)
-            {
-                HeadshotInfo other = obj as HeadshotInfo;
-                if (other == null)
-                    return false;
-                else
-                    return Name == other.Name && TotalHeadshots == other.TotalHeadshots;
-            }
-            public override int GetHashCode()
-            {
-                return Name.GetHashCode() ^ TotalHeadshots.GetHashCode();
-            }
-
-            public string Name { get; set; }
-            public int TotalHeadshots { get; set; }
         }
 
         // CRUD
@@ -45,10 +26,8 @@ namespace IVWZRT_HFT_2022231.Logic
         }
         public void Create(Legend item)
         {
-            string name = item.Name.ToLower();
-
-            if (!_validLegends.Contains(name))
-                throw new ArgumentException("Character does not exist");
+            if (item.Revives < 0 || item.Headshots < 0)
+                throw new ArgumentException("Number of revives and headshots must be non-negative");
             _repo.Create(item);
         }
         public void Update(Legend item)
@@ -64,12 +43,15 @@ namespace IVWZRT_HFT_2022231.Logic
             _repo.Delete(id);
         }
 
-        private static readonly string[] _validLegends = {
-            "wraith", "bangalore", "mirage", "octane", "revenant", "horizon", "fuse", "ash", "mad maggie",
-            "gibraltar", "caustic", "wattson", "rampart", "newcastle",
-            "lifeline", "loba",
-            "bloodhound", "pathfinder", "crypto", "valkyrie", "seer" 
-        };
+        // NON-CRUD
+        public IEnumerable<Legend> MostUsedLegendByRank()
+        {
+            return null;
+        }
+        public IEnumerable<int> NumGamesByDefensiveLegend()
+        {
+            return null;
+        }
 
         private IRepository<Legend> _repo;
     }

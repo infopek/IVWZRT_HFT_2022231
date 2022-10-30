@@ -14,26 +14,6 @@ namespace IVWZRT_HFT_2022231.Logic
             _repo = repo;
         }
 
-        public class PlayerRankInfo
-        {
-            public override bool Equals(object obj)
-            {
-                PlayerRankInfo other = obj as PlayerRankInfo;
-                if (other == null)
-                    return false;
-                else
-                    return other.UserName == UserName && other.Rank == Rank && other.KDRatio == KDRatio;
-            }
-            public override int GetHashCode()
-            {
-                return UserName.GetHashCode() ^ Rank.GetHashCode() ^ KDRatio.GetHashCode();
-            }
-
-            public string UserName { get; set; }
-            public string Rank { get; set; }
-            public float KDRatio { get; set; }
-        }
-
         // CRUD
         public IQueryable<Player> ReadAll()
         {
@@ -71,30 +51,13 @@ namespace IVWZRT_HFT_2022231.Logic
         }
 
         // NON-CRUD
-        
-        /// <summary>
-        /// Returns all the players whose kill/death ratio is (strictly) greater than 2.0 in a given <paramref name="rank"/>
-        /// </summary>
-        public IEnumerable<PlayerRankInfo> PlayersWithGreaterKD(string rank)
+        public IEnumerable<Player> PlayersWithGreaterKD(string rank)
         {
-            return from p in _repo.ReadAll()
-                   where p.Rank == rank
-                   && ((float)p.TotalKills / p.TotalDeaths) > 2.0f
-                   select new PlayerRankInfo
-                   {
-                       UserName = p.UserName,
-                       Rank = rank,
-                       KDRatio = (float)p.TotalKills / p.TotalDeaths
-                   };
+            return null;
         }
-        /// <summary>
-        /// Returns the number of times a player with username <paramref name="username"/> has finished in the top 3.
-        /// </summary>
         public int NumTimesTopThree(string username)
         {
-            return (from p in _repo.ReadAll()
-                   where p.UserName == username
-                   select p.Stats.Count(s => s.Placement <= 3)).First();
+            return 0;
         }
 
         private static readonly string[] _validRanks = { "unranked", "rookie", "bronze", "silver", "gold",
