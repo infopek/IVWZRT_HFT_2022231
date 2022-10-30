@@ -53,17 +53,42 @@ namespace IVWZRT_HFT_2022231.Logic
         }
 
         // NON-CRUD
-        public float AvgDamagePerGame()
+        /// <summary>
+        /// Returns the average damage of players in <paramref name="gamemode"/>
+        /// </summary>
+        public float AvgLengthOfGame(string gameMode)
         {
-            return 0.0f;
+            return (from m in _repo.ReadAll()
+                   where m.GameMode == gameMode
+                   group m by m.GameMode into gr
+                   select gr.Average(m => m.Length)).First();
         }
-        public string MapWhereRampartMostUsed()
-        {
-            return "";
+        /// <summary>
+        /// Returns the map(s) of match(es) where the most ramparts were played at the time.
+        /// </summary>
+        public IEnumerable<string> MapsWithMostRamparts()
+        {        
+            int maxUse = _repo.ReadAll().Max(m => m.Players.Count(p => p.Legend.Name.ToLower() == "rampart"));
+
+            return from m in _repo.ReadAll()
+                   where m.Players.Count(p => p.Legend.Name.ToLower() == "rampart") == maxUse
+                   select m.Map;
         }
-        public Match LongestMatchInDiamond()
+        /// <summary>
+        /// Returns the longest match(es) played in diamond ranked leagues.
+        /// </summary>
+        public IEnumerable<Match> LongestMatchesInDiamond()
         {
-            return null;
+            // Note: I'll assume that a diamond player can only be in a diamond ranked lobby (realistically, this is NOT the case)
+            float longest = _repo.ReadAll()
+                .Where(m => m.GameMode.ToLower() == "ranked leagues" && m.Players.Any(p => p.Rank.ToLower() == "diamond"))
+                .Max(m => m.Length);
+
+            return from m in _repo.ReadAll()
+                   where m.GameMode.ToLower() == "ranked leagues"
+                   && m.Players.Any(p => p.Rank.ToLower() == "diamond")
+                   && m.Length == longest
+                   select m;
         }
 
         private static readonly string[] _validModes = { "trios", "duos", "ranked leagues", "arenas", "ranked arenas" };
