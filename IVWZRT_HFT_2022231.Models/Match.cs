@@ -20,6 +20,22 @@ namespace IVWZRT_HFT_2022231.Models
             Map = split[3];
         }
 
+        public override bool Equals(object obj)
+        {
+            Match other = obj as Match;
+            if (other == null)
+                return false;
+            else
+                return MatchId == other.MatchId
+                    && Length == other.Length
+                    && GameMode == other.GameMode
+                    && Map == other.Map;
+        }
+        public override int GetHashCode()
+        {
+            return MatchId.GetHashCode() ^ Length.GetHashCode() ^ GameMode.GetHashCode() ^ Map.GetHashCode();
+        }
+
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int MatchId { get; set; }
