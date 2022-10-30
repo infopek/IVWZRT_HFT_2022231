@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 
 using IVWZRT_HFT_2022231.Models;
+using static IVWZRT_HFT_2022231.Logic.PlayerLogic;
 
 namespace IVWZRT_HFT_2022231.Logic
 {
@@ -15,7 +16,7 @@ namespace IVWZRT_HFT_2022231.Logic
         void Delete(int id);
 
         // NON-CRUD
-        IEnumerable<Player> PlayersWithGreaterKD(string rank);
+        IEnumerable<PlayerRankInfo> PlayersWithGreaterKD(string rank);
         int NumTimesTopThree(string username);
     }
 }
