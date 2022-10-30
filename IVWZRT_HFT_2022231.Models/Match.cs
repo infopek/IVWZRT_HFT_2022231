@@ -14,7 +14,7 @@ namespace IVWZRT_HFT_2022231.Models
 
             MatchId = int.Parse(split[0]);
 
-            Length = int.Parse(split[1]);
+            Length = float.Parse(split[1]);
 
             GameMode = split[2];
             Map = split[3];
