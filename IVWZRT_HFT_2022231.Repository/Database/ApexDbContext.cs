@@ -38,7 +38,7 @@ namespace IVWZRT_HFT_2022231.Repository
 
             // A player mains 1 legend, and a legend can be mained by multiple players
             modelBuilder.Entity<Player>()
-                .HasOne(p => p.Main)
+                .HasOne(p => p.Legend)
                 .WithMany(l => l.Players)
                 .HasForeignKey(p => p.LegendId)
                 .OnDelete(DeleteBehavior.Cascade);
