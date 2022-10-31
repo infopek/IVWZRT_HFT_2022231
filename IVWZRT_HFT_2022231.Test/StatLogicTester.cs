@@ -27,6 +27,59 @@ namespace IVWZRT_HFT_2022231.Test
             _logic = new StatLogic(_mockLegendRepo.Object);
         }
 
+        // Create tests
+        [Test]
+        public void Create_StatWithValidParams_Runs()
+        {
+            var stat = new EndGameStat("1@13@4.5@2400@5@7");
+
+            _logic.Create(stat);
+
+            _mockLegendRepo.Verify(r => r.Create(stat), Times.Once);
+        }
+        [Test]
+        public void Create_StatWith0KP0Dmg_Runs()
+        {
+            var stat = new EndGameStat("1@13@0@0@5@7");
+
+            _logic.Create(stat);
+
+            _mockLegendRepo.Verify(r => r.Create(stat), Times.Once);
+        }
+
+        [Test]
+        public void Create_StatWithNegativeKp_NeverRuns()
+        {
+            var stat = new EndGameStat("1@13@-4.5@2400@5@7");
+
+            try
+            {
+                _logic.Create(stat);
+            }
+            catch
+            {
+
+            }
+
+            _mockLegendRepo.Verify(r => r.Create(stat), Times.Never);
+        }
+        [Test]
+        public void Create_StatWithNegativeDmg_NeverRuns()
+        {
+            var stat = new EndGameStat("1@13@4.5@-2400@5@7");
+
+            try
+            {
+                _logic.Create(stat);
+            }
+            catch
+            {
+
+            }
+
+            _mockLegendRepo.Verify(r => r.Create(stat), Times.Never);
+        }
+
         private StatLogic _logic;
         private Mock<IRepository<EndGameStat>> _mockLegendRepo;
     }
