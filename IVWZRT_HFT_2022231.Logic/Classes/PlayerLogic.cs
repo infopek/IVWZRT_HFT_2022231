@@ -100,6 +100,6 @@ namespace IVWZRT_HFT_2022231.Logic
         private static readonly string[] _validRanks = { "unranked", "rookie", "bronze", "silver", "gold",
             "platinum", "diamond", "master", "predator" };
 
-        private IRepository<Player> _repo;
+        private readonly IRepository<Player> _repo;
     }
 }

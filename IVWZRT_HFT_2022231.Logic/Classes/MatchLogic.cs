@@ -67,7 +67,7 @@ namespace IVWZRT_HFT_2022231.Logic
         /// Returns the map(s) of match(es) where the most ramparts were played at the time.
         /// </summary>
         public IEnumerable<string> MapsWithMostRamparts()
-        {
+        {        
             int maxUse = _repo.ReadAll().Max(m => m.Players.Count(p => p.Legend.Name.ToLower() == "rampart"));
 
             return from m in _repo.ReadAll()
@@ -97,6 +97,6 @@ namespace IVWZRT_HFT_2022231.Logic
         private static readonly string[] _validArenasMaps = { "drop off", "habitat 4", "encore", "overflow", "party crasher",
             "phase runner", "rotating map" };
 
-        private IRepository<Match> _repo;
+        private readonly IRepository<Match> _repo;
     }
 }

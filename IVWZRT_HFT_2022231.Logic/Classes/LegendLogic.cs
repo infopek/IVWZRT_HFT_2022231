@@ -51,7 +51,7 @@ namespace IVWZRT_HFT_2022231.Logic
             "bloodhound", "pathfinder", "crypto", "valkyrie", "seer" 
         };
 
-        private IRepository<Legend> _repo;
+        private readonly IRepository<Legend> _repo;
     }
 }
 

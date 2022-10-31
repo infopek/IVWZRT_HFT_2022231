@@ -42,7 +42,6 @@ namespace IVWZRT_HFT_2022231.Logic
             _repo.Delete(id);
         }
 
-
-        private IRepository<EndGameStat> _repo;
+        private readonly IRepository<EndGameStat> _repo;
     }
 }
