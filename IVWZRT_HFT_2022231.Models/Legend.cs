@@ -27,6 +27,7 @@ namespace IVWZRT_HFT_2022231.Models
         public string Name { get; set; }
         public string Skin { get; set; }
 
+        [NotMapped]
         public virtual ICollection<Player> Players { get; set; }
     }
 }

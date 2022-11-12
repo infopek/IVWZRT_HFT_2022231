@@ -47,8 +47,12 @@ namespace IVWZRT_HFT_2022231.Models
         [ForeignKey("Legend")]
         public int LegendId { get; set; }
 
+
+        [NotMapped]
         public virtual Legend Legend { get; set; }
+        [NotMapped]
         public virtual ICollection<Match> Matches { get; set; }
+        [NotMapped]
         public virtual ICollection<EndGameStat> Stats { get; set; }
     }
 }

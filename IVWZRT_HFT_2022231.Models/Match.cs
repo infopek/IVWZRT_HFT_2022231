@@ -48,7 +48,9 @@ namespace IVWZRT_HFT_2022231.Models
         public string GameMode { get; set; }
         public string Map { get; set; }
 
+        [NotMapped]
         public virtual ICollection<Player> Players { get; set; }
+        [NotMapped]
         public virtual ICollection<EndGameStat> Stats { get; set; }
     }
 }

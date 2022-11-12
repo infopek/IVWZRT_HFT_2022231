@@ -35,7 +35,9 @@ namespace IVWZRT_HFT_2022231.Models
         [ForeignKey("Match")]
         public int MatchId { get; set; }
 
+        [NotMapped]
         public virtual Player Player { get; set; }
+        [NotMapped]
         public virtual Match Match { get; set; }
     }
 }
