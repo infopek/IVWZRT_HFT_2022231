@@ -54,7 +54,7 @@ namespace IVWZRT_HFT_2022231.Logic
 
         // NON-CRUD
         /// <summary>
-        /// Returns the average damage of players in <paramref name="gamemode"/>
+        /// Returns the average length of a game in <paramref name="gameMode"/>
         /// </summary>
         public float AvgLengthOfGame(string gameMode)
         {
