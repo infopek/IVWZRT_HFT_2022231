@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Text.Json.Serialization;
+
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace IVWZRT_HFT_2022231.Models
@@ -38,6 +40,7 @@ namespace IVWZRT_HFT_2022231.Models
         [NotMapped]
         public virtual Player Player { get; set; }
         [NotMapped]
+        [JsonIgnore]
         public virtual Match Match { get; set; }
     }
 }
