@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -47,12 +48,13 @@ namespace IVWZRT_HFT_2022231.Models
         [ForeignKey("Legend")]
         public int LegendId { get; set; }
 
-
         [NotMapped]
         public virtual Legend Legend { get; set; }
         [NotMapped]
+        [JsonIgnore]
         public virtual ICollection<Match> Matches { get; set; }
         [NotMapped]
+        [JsonIgnore]
         public virtual ICollection<EndGameStat> Stats { get; set; }
     }
 }
