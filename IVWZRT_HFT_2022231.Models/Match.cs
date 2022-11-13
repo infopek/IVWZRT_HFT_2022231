@@ -2,6 +2,7 @@
 
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace IVWZRT_HFT_2022231.Models
 {
@@ -44,11 +45,13 @@ namespace IVWZRT_HFT_2022231.Models
         [Required]
         [Range(1, 30)]
         public float Length { get; set; }
-
+        [Required]
         public string GameMode { get; set; }
+        [Required]
         public string Map { get; set; }
 
         [NotMapped]
+        [JsonIgnore]
         public virtual ICollection<Player> Players { get; set; }
         [NotMapped]
         public virtual ICollection<EndGameStat> Stats { get; set; }
