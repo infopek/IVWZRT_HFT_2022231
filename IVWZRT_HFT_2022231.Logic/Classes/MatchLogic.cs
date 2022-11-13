@@ -59,7 +59,7 @@ namespace IVWZRT_HFT_2022231.Logic
         public float AvgLengthOfGame(string gameMode)
         {
             return (from m in _repo.ReadAll()
-                   where m.GameMode == gameMode
+                   where m.GameMode.ToLower() == gameMode.ToLower()
                    group m by m.GameMode into gr
                    select gr.Average(m => m.Length)).First();
         }
