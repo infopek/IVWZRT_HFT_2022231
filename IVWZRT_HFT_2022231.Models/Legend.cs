@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -28,6 +29,7 @@ namespace IVWZRT_HFT_2022231.Models
         public string Skin { get; set; }
 
         [NotMapped]
+        [JsonIgnore]
         public virtual ICollection<Player> Players { get; set; }
     }
 }
