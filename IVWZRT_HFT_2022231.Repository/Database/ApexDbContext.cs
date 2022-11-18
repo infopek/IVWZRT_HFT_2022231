@@ -1,11 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System.Collections.Generic;
 
 using IVWZRT_HFT_2022231.Models;
-using System.Net;
-using static Humanizer.On;
-using static System.Net.Mime.MediaTypeNames;
-using System;
 
 namespace IVWZRT_HFT_2022231.Repository
 {
