@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
+
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Json;
-using System.Text;
-using System.Threading.Tasks;
+
+using IVWZRT_HFT_2022231.Models;
 
 namespace IVWZRT_HFT_2022231.Client
 {
@@ -21,6 +21,7 @@ namespace IVWZRT_HFT_2022231.Client
             Init(baseurl);
         }
 
+        // CRUD
         public List<T> Get<T>(string endpoint)
         {
             List<T> items = new List<T>();
@@ -103,6 +104,85 @@ namespace IVWZRT_HFT_2022231.Client
             }
 
             response.EnsureSuccessStatusCode();
+        }
+
+        // Player queries
+        public IEnumerable<PlayerRankInfo> PlayersKD(string rank, string endpoint)
+        {
+            IEnumerable<PlayerRankInfo> playerInfos = null;
+            HttpResponseMessage response = _client.GetAsync(endpoint + "/PlayersWithGreaterKD/" + rank).GetAwaiter().GetResult();
+            if (response.IsSuccessStatusCode)
+            {
+                playerInfos = response.Content.ReadAsAsync<IEnumerable<PlayerRankInfo>>().GetAwaiter().GetResult();
+            }
+            else
+            {
+                var error = response.Content.ReadAsAsync<RestExceptionInfo>().GetAwaiter().GetResult();
+                throw new ArgumentException(error.Msg);
+            }
+            return playerInfos;
+        }
+        public int TopThree(string username, string endpoint)
+        {
+            int times = 0;
+            HttpResponseMessage response = _client.GetAsync(endpoint + "/NumTimesTopThree/" + username).GetAwaiter().GetResult();
+            if (response.IsSuccessStatusCode)
+            {
+                times = response.Content.ReadAsAsync<int>().GetAwaiter().GetResult();
+            }
+            else
+            {
+                var error = response.Content.ReadAsAsync<RestExceptionInfo>().GetAwaiter().GetResult();
+                throw new ArgumentException(error.Msg);
+            }
+            return times;
+        }
+
+        // Match queries
+        public float AvgLength(string gameMode, string endpoint)
+        {
+            float avg = -1.0f;
+            HttpResponseMessage response = _client.GetAsync(endpoint + "/AvgLengthOfGame/" + gameMode).GetAwaiter().GetResult();
+            if (response.IsSuccessStatusCode)
+            {
+                avg = response.Content.ReadAsAsync<float>().GetAwaiter().GetResult();
+            }
+            else
+            {
+                var error = response.Content.ReadAsAsync<RestExceptionInfo>().GetAwaiter().GetResult();
+                throw new ArgumentException(error.Msg);
+            }
+            return avg;
+        }
+        public IEnumerable<string> MostRamparts(string endpoint)
+        {
+            IEnumerable<string> maps = null;
+            HttpResponseMessage response = _client.GetAsync(endpoint + "/MapsWithMostRamparts").GetAwaiter().GetResult();
+            if (response.IsSuccessStatusCode)
+            {
+                maps = response.Content.ReadAsAsync<IEnumerable<string>>().GetAwaiter().GetResult();
+            }
+            else
+            {
+                var error = response.Content.ReadAsAsync<RestExceptionInfo>().GetAwaiter().GetResult();
+                throw new ArgumentException(error.Msg);
+            }
+            return maps;
+        }
+        public IEnumerable<Match> LongestMatches(string endpoint)
+        {
+            IEnumerable<Match> matches = null;
+            HttpResponseMessage response = _client.GetAsync(endpoint + "/LongestMatchesInDiamond").GetAwaiter().GetResult();
+            if (response.IsSuccessStatusCode)
+            {
+                matches = response.Content.ReadAsAsync<IEnumerable<Match>>().GetAwaiter().GetResult();
+            }
+            else
+            {
+                var error = response.Content.ReadAsAsync<RestExceptionInfo>().GetAwaiter().GetResult();
+                throw new ArgumentException(error.Msg);
+            }
+            return matches;
         }
 
         private void Init(string baseurl)
