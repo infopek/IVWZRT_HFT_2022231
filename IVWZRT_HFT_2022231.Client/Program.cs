@@ -9,6 +9,7 @@ namespace IVWZRT_HFT_2022231.Client
 {
     public class Program
     {
+        // CRUD
         static void Create(string entity)
         {
             if (entity == "Player")
@@ -179,15 +180,76 @@ namespace IVWZRT_HFT_2022231.Client
             }
         }
 
+        // Player queries
+        static void GetPlayersWithGreaterKD(string entity)
+        {
+            Console.Write("Enter rank: ");
+            string rank = Console.ReadLine();
+
+            IEnumerable<PlayerRankInfo> playerInfos = _rest.PlayersKD(rank, entity);
+            foreach (var info in playerInfos)
+            {
+                Console.WriteLine($"{info.UserName}: KD Ratio -- {info.KDRatio}");
+            }
+            Console.ReadLine();
+        }
+        static void GetNumTimesTopThree(string entity)
+        {
+            Console.Write("Enter username: ");
+            string username = Console.ReadLine();
+
+            int times = _rest.TopThree(username, entity);
+            Console.WriteLine($"{username} has been in the top three {times} times");
+            Console.ReadLine();
+        }
+
+        // Match queries
+        static void GetAvgLengthOfGame(string entity)
+        {
+            Console.Write("Enter gamemode: ");
+            string gameMode = Console.ReadLine();
+
+            float avg = _rest.AvgLength(gameMode, entity);
+            Console.WriteLine($"Average length of {gameMode}: {avg}");
+            Console.ReadLine();
+
+        }
+        static void GetMapsWithMostRamparts(string entity)
+        {
+            IEnumerable<string> maps = _rest.MostRamparts(entity);
+            foreach (string map in maps)
+            {
+                Console.WriteLine(map);
+            }
+            Console.ReadLine();
+        }
+        static void GetLongestMatchesInDiamond(string entity)
+        {
+            IEnumerable<Match> matches = _rest.LongestMatches(entity);
+            foreach (var match in matches)
+            {
+                Console.WriteLine($"{match.MatchId}: map -- {match.Map}, length -- {match.Length}");
+            }
+            Console.ReadLine();
+        }
+
         static void Main(string[] args)
         {
             _rest = new RestService("http://localhost:64082/", "player");
+
+            var querySubMenu = new ConsoleMenu(args, level: 1)
+                .Add("Players with KD Greater than 2.0", () => GetPlayersWithGreaterKD("Query"))
+                .Add("# of Times Player Top 3", () => GetNumTimesTopThree("Query"))
+                .Add("Average Length of Game", () => GetAvgLengthOfGame("Query"))
+                .Add("Maps with Most Ramparts", () => GetMapsWithMostRamparts("Query"))
+                .Add("Longest Match in Diamond", () => GetLongestMatchesInDiamond("Query"))
+                .Add("Exit", ConsoleMenu.Close);
 
             var playerSubMenu = new ConsoleMenu(args, level: 1)
                 .Add("List", () => List("Player"))
                 .Add("Create", () => Create("Player"))
                 .Add("Delete", () => Delete("Player"))
-                .Add("Update", () => Update("Player"))
+                .Add("Update", () => Update("Player"))           
                 .Add("Exit", ConsoleMenu.Close);
 
             var legendSubMenu = new ConsoleMenu(args, level: 1)
@@ -202,6 +264,7 @@ namespace IVWZRT_HFT_2022231.Client
                 .Add("Create", () => Create("Match"))
                 .Add("Delete", () => Delete("Match"))
                 .Add("Update", () => Update("Match"))
+                
                 .Add("Exit", ConsoleMenu.Close);
 
             var statSubMenu = new ConsoleMenu(args, level: 1)
@@ -216,6 +279,7 @@ namespace IVWZRT_HFT_2022231.Client
                 .Add("Legends", () => legendSubMenu.Show())
                 .Add("Matches", () => matchSubMenu.Show())
                 .Add("Stats", () => statSubMenu.Show())
+                .Add("Queries", () => querySubMenu.Show())
                 .Add("Exit", ConsoleMenu.Close);
 
             menu.Show();
