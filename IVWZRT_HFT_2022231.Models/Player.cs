@@ -6,6 +6,26 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace IVWZRT_HFT_2022231.Models
 {
+    public class PlayerRankInfo
+    {
+        public override bool Equals(object obj)
+        {
+            PlayerRankInfo other = obj as PlayerRankInfo;
+            if (other == null)
+                return false;
+            else
+                return other.UserName == UserName && other.Rank == Rank && other.KDRatio == KDRatio;
+        }
+        public override int GetHashCode()
+        {
+            return UserName.GetHashCode() ^ Rank.GetHashCode() ^ KDRatio.GetHashCode();
+        }
+
+        public string UserName { get; set; }
+        public string Rank { get; set; }
+        public float KDRatio { get; set; }
+    }
+
     public class Player
     {
         public Player() { }

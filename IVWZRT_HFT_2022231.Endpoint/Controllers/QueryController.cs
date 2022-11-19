@@ -18,7 +18,7 @@ namespace IVWZRT_HFT_2022231.Endpoint.Controllers
 
         // Player queries
         [HttpGet("{rank}")]
-        public IEnumerable<PlayerLogic.PlayerRankInfo> PlayersWithGreaterKD(string rank)
+        public IEnumerable<PlayerRankInfo> PlayersWithGreaterKD(string rank)
         {
             return _playerLogic.PlayersWithGreaterKD(rank);
         }
