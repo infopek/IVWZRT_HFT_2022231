@@ -12,6 +12,7 @@ using Microsoft.OpenApi.Models;
 using IVWZRT_HFT_2022231.Logic;
 using IVWZRT_HFT_2022231.Repository;
 using IVWZRT_HFT_2022231.Models;
+using IVWZRT_HFT_2022231.Endpoint.Services;
 
 namespace IVWZRT_HFT_2022231.Endpoint
 {
@@ -35,6 +36,8 @@ namespace IVWZRT_HFT_2022231.Endpoint
             services.AddTransient<ILegendLogic, LegendLogic>();
             services.AddTransient<IMatchLogic, MatchLogic>();
             services.AddTransient<IStatLogic, StatLogic>();
+
+            services.AddSignalR();
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
@@ -65,6 +68,7 @@ namespace IVWZRT_HFT_2022231.Endpoint
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+                endpoints.MapHub<SignalRHub>("/hub");
             });
         }
 
