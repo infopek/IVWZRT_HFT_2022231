@@ -26,6 +26,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Others", "Others", "{D85CA7
 		.gitignore = .gitignore
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IVWZRT_HFT_2022231.WpfClient", "IVWZRT_HFT_2022231.WpfClient\IVWZRT_HFT_2022231.WpfClient.csproj", "{CAEEA942-D554-4717-B5D6-39A4CB6E0AB7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -56,6 +58,10 @@ Global
 		{288E2C42-DCCE-4BAA-878C-405B0FF2F4B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{288E2C42-DCCE-4BAA-878C-405B0FF2F4B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{288E2C42-DCCE-4BAA-878C-405B0FF2F4B0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CAEEA942-D554-4717-B5D6-39A4CB6E0AB7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CAEEA942-D554-4717-B5D6-39A4CB6E0AB7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CAEEA942-D554-4717-B5D6-39A4CB6E0AB7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CAEEA942-D554-4717-B5D6-39A4CB6E0AB7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -67,6 +73,7 @@ Global
 		{B5DD52D2-3887-4C42-B81A-E5C448B3B894} = {BFE47FDD-A570-44A9-A107-698A16234E19}
 		{1CE070A0-DB12-484E-A8B4-79B347079136} = {BFE47FDD-A570-44A9-A107-698A16234E19}
 		{288E2C42-DCCE-4BAA-878C-405B0FF2F4B0} = {BFE47FDD-A570-44A9-A107-698A16234E19}
+		{CAEEA942-D554-4717-B5D6-39A4CB6E0AB7} = {4776E10E-BF55-470B-9C41-040C4645C97C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {88124DA1-E6A3-4B70-8D87-F0675E74B30E}

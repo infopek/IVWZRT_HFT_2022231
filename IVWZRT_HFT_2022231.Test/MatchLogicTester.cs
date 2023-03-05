@@ -450,7 +450,6 @@ namespace IVWZRT_HFT_2022231.Test
                         }
                     }
                 }
-
             }.AsQueryable());
 
             _logic = new MatchLogic(_mockRepo.Object);
