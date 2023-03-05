@@ -235,7 +235,7 @@ namespace IVWZRT_HFT_2022231.Client
 
         static void Main(string[] args)
         {
-            _rest = new RestService("http://localhost:64082/", "player");
+            _rest = new RestService("http://localhost:64082/", "swagger");
 
             var querySubMenu = new ConsoleMenu(args, level: 1)
                 .Add("Players with KD Greater than 2.0", () => GetPlayersWithGreaterKD("Query"))
@@ -263,8 +263,7 @@ namespace IVWZRT_HFT_2022231.Client
                 .Add("List", () => List("Match"))
                 .Add("Create", () => Create("Match"))
                 .Add("Delete", () => Delete("Match"))
-                .Add("Update", () => Update("Match"))
-                
+                .Add("Update", () => Update("Match"))         
                 .Add("Exit", ConsoleMenu.Close);
 
             var statSubMenu = new ConsoleMenu(args, level: 1)
