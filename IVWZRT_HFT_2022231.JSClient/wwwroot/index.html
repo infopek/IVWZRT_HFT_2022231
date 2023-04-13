@@ -1,0 +1,51 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Player UI</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <h1>Player Catalog</h1>
+
+    <div id="formdiv">
+        <label>Player Name</label>
+        <input type="text" id="playername" />
+
+        <label>Player Age</label>
+        <input type="number" id="playerage" />
+
+        <label>Player Rank</label>
+        <input type="text" id="playerrank" />
+
+        <label>Player Games</label>
+        <input type="number" id="playergames" />
+
+        <label>Player Kills</label>
+        <input type="number" id="playerkills" />
+
+        <label>Player Deaths</label>
+        <input type="number" id="playerdeaths" />
+
+        <button type="button" onclick="create()">Add Player</button>
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Age</th>
+                <th>Rank</th>
+                <th>Games</th>
+                <th>Kills</th>
+                <th>Deaths</th>
+            </tr>
+        </thead>
+        <tbody id="resultarea">
+        </tbody>
+    </table>
+
+    <script src="script.js"></script>
+</body>
+</html>
