@@ -75,8 +75,14 @@ namespace IVWZRT_HFT_2022231.WpfClient
                 {
                     _selectedPlayer = new Player()
                     {
+                        PlayerId = value.PlayerId,
                         UserName = value.UserName,
-                        PlayerId = value.PlayerId
+                        Age = value.Age,
+
+                        Rank = value.Rank,
+                        NumGames = value.NumGames,
+                        TotalKills = value.TotalKills,
+                        TotalDeaths = value.TotalDeaths
                     };
                     OnPropertyChanged();
                     (DeletePlayerCommand as RelayCommand).NotifyCanExecuteChanged();

@@ -13,5 +13,10 @@ namespace IVWZRT_HFT_2022231.WpfClient
     /// </summary>
     public partial class App : Application
     {
+        void App_Startup(object sender, StartupEventArgs e)
+        {
+            MatchWindow matchWindow = new MatchWindow();
+            matchWindow.Show();
+        }
     }
 }
