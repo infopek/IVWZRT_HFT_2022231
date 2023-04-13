@@ -63,6 +63,12 @@ namespace IVWZRT_HFT_2022231.Endpoint
                 await context.Response.WriteAsJsonAsync(response);
             }));
 
+            app.UseCors(x => x
+                .AllowCredentials()
+                .AllowAnyHeader()
+                .AllowAnyMethod()
+                .WithOrigins("http://localhost:41372"));
+
             app.UseRouting();
 
             app.UseEndpoints(endpoints =>
